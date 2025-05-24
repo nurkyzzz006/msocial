@@ -1,0 +1,29 @@
+#Header{
+  padding-block: 20px;
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0.5px solid white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 300px;
+    max-width: 400px;
+    input {
+      border: none;
+      color: white;
+      width: 280px;
+    }
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+}
