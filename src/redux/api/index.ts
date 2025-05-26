@@ -7,11 +7,17 @@ import {
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_API_URL,
   prepareHeaders: (headers) => {
-    if (process.env.NEXT_PUBLIC_API_TOKEN) {
-      headers.set(
-        "Authorization",
-        `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
-      );
+    try {
+      const storedTokens = localStorage.getItem("token");
+      const accessToken: IAuthResponse = storedTokens
+        ? JSON.parse(storedTokens)
+        : {};
+
+      if (accessToken.accessToken) {
+        headers.set("Authorization", `Bearer ${accessToken.accessToken}`);
+      }
+    } catch (error) {
+      console.error("Ошибка при чтении токена из localStorage:", error);
     }
     return headers;
   },
@@ -27,6 +33,6 @@ export const api = createApi({
   baseQuery: baseQueryExtended,
   refetchOnFocus: true,
   refetchOnReconnect: true,
-  tagTypes: [],
+  tagTypes: ["auth"],
   endpoints: () => ({}),
 });

@@ -1,8 +1,25 @@
 "use client";
 import { useRouter } from "next/navigation";
 import scss from "./Login.module.scss";
+import { useLoginMutation } from "@/redux/api/auth";
+import { SubmitHandler, useForm } from "react-hook-form";
 const Login = () => {
   const router = useRouter();
+  const [userLogin] = useLoginMutation();
+  const { handleSubmit, register, reset } = useForm<LoginAuthRequest>();
+
+  const LoginSub: SubmitHandler<LoginAuthRequest> = async (data) => {
+    try {
+      const { data: loginData } = await userLogin(data);
+      if (loginData?.accessToken) {
+        localStorage.setItem("token", JSON.stringify(loginData));
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Ошибка при входе:", error);
+    }
+  };
+
   return (
     <div id={scss.Login}>
       <div className="container">
@@ -17,10 +34,18 @@ const Login = () => {
               Register
             </h1>
           </div>
-          <form action="">
+          <form action="" onSubmit={handleSubmit(LoginSub)}>
             <div className={scss.inputs}>
-              <input type="text" placeholder="@gmail.com" />
-              <input type="text" placeholder="Password" />
+              <input
+                {...register("email", { required: true })}
+                type="text"
+                placeholder="@gmail.com"
+              />
+              <input
+                {...register("password", { required: true })}
+                type="text"
+                placeholder="Password"
+              />
               <button type="submit">Login</button>
             </div>
           </form>

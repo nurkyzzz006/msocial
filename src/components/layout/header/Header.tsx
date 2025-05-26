@@ -1,11 +1,16 @@
+"use client";
 import Image from "next/image";
 import scss from "./Header.module.scss";
 import logo from "@/assets/logo-Photoroom (1).png";
 import { IoMdSearch } from "react-icons/io";
 import { Links } from "@/constants/Links";
 import Link from "next/link";
+import { useGetMeQuery } from "@/redux/api/auth";
 
 const Header = () => {
+  const { data } = useGetMeQuery();
+
+
   return (
     <div id={scss.Header}>
       <div className="container">

@@ -1,8 +1,28 @@
 "use client";
 import { useRouter } from "next/navigation";
 import scss from "./Register.module.scss";
+import { useRegisterMutation } from "@/redux/api/auth";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 const Register = () => {
   const router = useRouter();
+  const [userRegister] = useRegisterMutation();
+  const { handleSubmit, register, reset } = useForm<IAuthRegRequest>();
+
+  const onSubmit: SubmitHandler<IAuthRegRequest> = async (data) => {
+    const newUser: IAuthRegRequest = {
+      email: data.email,
+      password: data.password,
+      username: data.username,
+      photo: data.photo,
+    };
+    try {
+      const { data } = await userRegister(newUser);
+      localStorage.setItem("token", JSON.stringify(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div id={scss.Register}>
@@ -14,11 +34,28 @@ const Register = () => {
             </h1>
             |<h1 className={scss.register}>Register</h1>
           </div>
-          <form action="">
+          <form action="" onSubmit={handleSubmit(onSubmit)}>
             <div className={scss.inputs}>
-              <input type="text" placeholder="@gmail.com" />
-              <input type="text" placeholder="Password" />
-              <input type="text" placeholder="Repeat password" />
+              <input
+                {...register("email", { required: true })}
+                type="email"
+                placeholder="Email"
+              />
+              <input
+                {...register("password", { required: true })}
+                type="text"
+                placeholder="Password"
+              />
+              <input
+                {...register("username", { required: true })}
+                type="text"
+                placeholder="NickName"
+              />
+              <input
+                {...register("photo", { required: true })}
+                type="text"
+                placeholder="Photo URL"
+              />
               <button type="submit">Register</button>
             </div>
           </form>
