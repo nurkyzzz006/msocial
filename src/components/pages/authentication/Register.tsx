@@ -56,7 +56,9 @@ const Register = () => {
                 type="text"
                 placeholder="Photo URL"
               />
-              <button type="submit">Register</button>
+              <button type="submit" onClick={() => router.push("/")}>
+                Register
+              </button>
             </div>
           </form>
           <p>-------- or --------</p>

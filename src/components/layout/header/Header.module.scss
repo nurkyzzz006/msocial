@@ -1,4 +1,4 @@
-#Header{
+#Header {
   padding-block: 20px;
 }
 .content {
@@ -25,5 +25,29 @@
     display: flex;
     align-items: center;
     gap: 40px;
+  }
+  .userPhoto {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 999;
+
+    img {
+      width: 100%;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      background: white;
+    }
+    .logout_btn {
+      position: absolute;
+      top: 45px;
+      right: 0px;
+      padding: 6px 20px;
+      width: 115px;
+      border: 1px solid white;
+      border-radius: 10px;
+    }
   }
 }
