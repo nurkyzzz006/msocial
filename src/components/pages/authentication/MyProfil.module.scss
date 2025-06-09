@@ -1,0 +1,72 @@
+#MyProfil {
+  padding-block: 50px;
+  .content {
+    .up_side {
+      max-width: 900px;
+      margin-left: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 150px;
+
+      img {
+        width: 160px;
+        height: 160px;
+        border-radius: 100%;
+      }
+      .followers {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 25px;
+        .first_line {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          h5 {
+            font-weight: 400;
+            font-size: 20px;
+            margin-right: 20px;
+          }
+          button {
+            padding-block: 10px;
+            padding-inline: 15px;
+            border: none;
+            background: #434242;
+            border-radius: 8px;
+            font-weight: 600;
+          }
+          .setting {
+            width: 28px;
+            height: 28px;
+          }
+        }
+        .second_line {
+          display: flex;
+          gap: 38px;
+          p {
+            display: flex;
+            gap: 7px;
+            color: rgba(255, 255, 255, 0.678);
+            letter-spacing: 1px;
+            font-size: 15px;
+            font-weight: 100;
+            span {
+              font-weight: 600;
+            }
+          }
+        }
+        .three_line {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+      }
+    }
+  }
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

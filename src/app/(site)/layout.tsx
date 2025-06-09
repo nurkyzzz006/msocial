@@ -9,7 +9,7 @@ interface ILayout {
 const layout: FC<ILayout> = ({ children }) => {
   return (
     <ReduxProviders>
-      <LayoutSite>{children}</LayoutSite>;
+      <LayoutSite>{children}</LayoutSite>
     </ReduxProviders>
   );
 };

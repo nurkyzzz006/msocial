@@ -31,7 +31,11 @@ const LayoutSite: FC<ILayout> = ({ children }) => {
 
   if (isLoading) return null;
 
-  const isAuth = pathName !== "/login" && pathName !== "/register";
+  const isAuth =
+    pathName !== "/login" &&
+    pathName !== "/register" &&
+    pathName !== "/auth/forgot";
+  pathName !== "/auth/reset-pawssord";
 
   return (
     <div className={scss.LayoutSite}>

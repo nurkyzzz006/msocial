@@ -24,6 +24,34 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["auth"],
     }),
+    forgotPassword: build.mutation<
+      SIGN.ForgotPasswordResponse,
+      SIGN.ForgotPasswordRequest
+    >({
+      query: (body) => ({
+        url: "/auth/forgot",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["auth"],
+    }),
+    resetPassword: build.mutation<
+      SIGN.ResetPasswordResponse,
+      SIGN.ResetPasswordRequest
+    >({
+      query: (body) => ({
+        url: "/auth/reset-password",
+        method: "PATCH",
+        body: body,
+      }),
+      invalidatesTags: ["auth"],
+    }),
   }),
 });
-export const { useRegisterMutation, useGetMeQuery, useLoginMutation } = api;
+export const {
+  useRegisterMutation,
+  useGetMeQuery,
+  useLoginMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
+} = api;

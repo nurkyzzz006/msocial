@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import scss from "./Login.module.scss";
 import { useLoginMutation } from "@/redux/api/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Link from "next/link";
 const Login = () => {
   const router = useRouter();
   const [userLogin] = useLoginMutation();
@@ -49,7 +50,10 @@ const Login = () => {
               <button type="submit">Login</button>
             </div>
           </form>
-          <p>-------- or --------</p>
+          <p>
+            <Link href={"/auth/forgot"}>Forgot Password</Link>
+          </p>
+
           <button className={scss.google_btn}>Google</button>
         </div>
       </div>

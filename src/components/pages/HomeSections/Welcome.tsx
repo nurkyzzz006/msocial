@@ -3,7 +3,7 @@ import { useGetPostQuery } from "@/redux/api/posts";
 import scss from "./Welcome.module.scss";
 const Welcome = () => {
   const { data } = useGetPostQuery();
-  console.log(data);
+
   return (
     <div id={scss.Welcome}>
       <div className="container">

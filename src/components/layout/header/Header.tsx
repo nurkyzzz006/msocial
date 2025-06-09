@@ -7,13 +7,14 @@ import { Links } from "@/constants/Links";
 import Link from "next/link";
 import { useGetMeQuery } from "@/redux/api/auth";
 import { useState } from "react";
-import { BiSolidUserCircle } from "react-icons/bi";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const [logout, setLogout] = useState<boolean>(false);
   const { data } = useGetMeQuery();
+  const pathname = usePathname();
   const router = useRouter();
+  if (pathname === "/my_profil") return null;
   const handleLog = () => {
     localStorage.removeItem("token");
     window.location.reload();
@@ -23,7 +24,6 @@ const Header = () => {
     <div id={scss.Header}>
       <div className="container">
         <div className={scss.content}>
-          <Image src={logo} alt="asd" width={100} height={90} />
           <div className={scss.search}>
             <input type="text" placeholder="Search...?" />
             <IoMdSearch />

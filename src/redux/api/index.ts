@@ -6,15 +6,31 @@ import {
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_API_URL,
+  // prepareHeaders: (headers) => {
+  //   try {
+  //     const storedTokens = localStorage.getItem("token");
+  //     const accessToken: IAuthResponse = storedTokens
+  //       ? JSON.parse(storedTokens)
+  //       : {};
+
+  //     if (accessToken.accessToken) {
+  //       headers.set("Authorization", `Bearer ${accessToken.accessToken}`);
+  //     }
+  //   } catch (error) {
+  //     console.error("Ошибка при чтении токена из localStorage:", error);
+  //   }
+  //   return headers;
+  // },
   prepareHeaders: (headers) => {
     try {
       const storedTokens = localStorage.getItem("token");
-      const accessToken: IAuthResponse = storedTokens
-        ? JSON.parse(storedTokens)
-        : {};
 
-      if (accessToken.accessToken) {
-        headers.set("Authorization", `Bearer ${accessToken.accessToken}`);
+      if (storedTokens && storedTokens !== "undefined") {
+        const accessToken: IAuthResponse = JSON.parse(storedTokens);
+
+        if (accessToken?.accessToken) {
+          headers.set("Authorization", `Bearer ${accessToken.accessToken}`);
+        }
       }
     } catch (error) {
       console.error("Ошибка при чтении токена из localStorage:", error);

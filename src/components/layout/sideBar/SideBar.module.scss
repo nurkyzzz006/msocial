@@ -1,7 +1,45 @@
-.SideBar {
+#SideBar {
   width: 200px;
-  background-color: purple;
+  padding-inline: 18px;
   position: sticky;
   left: 0;
   height: 100vh;
+  border-right: 0.1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+  button {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    border: none;
+    font-size: 17px;
+  }
+  .navi {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 30px;
+    padding-inline-start: 10px;
+  }
+  .userPhoto {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    h5 {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    img {
+      width: 28px;
+      height: 28px;
+      border-radius: 100%;
+    }
+  }
 }
